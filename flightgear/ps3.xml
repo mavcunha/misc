@@ -1,0 +1,280 @@
+<?xml version="1.0"?>
+<!--
+   To override or add "named" joystick drivers list them in
+   <js-named> entries with paths relative to the directory where
+   the joysticks.xml file resides (first example). Such "named"
+   drivers are only picked up if one of their <name>s matches
+   the joystick hardware (see output of the js_demo application).
+   These drivers have precedence over already existing drivers
+   with the same <name>. (You can also add a <name>default</name>
+   entry to the driver to make it the default choice.)
+
+   The second example shows how to load a driver directly to
+   position 0. This will then be used for the first joystick on
+   your system and FlightGear will not overwrite it.
+-->
+
+<PropertyList>
+  <axis>
+    <name>Left Stick Left/Right</name>
+    <desc>Aileron</desc>
+    <direction>right</direction>
+    <binding>
+      <command>property-scale</command>
+      <property>/controls/flight/aileron</property>
+      <offset type="double">0</offset>
+      <factor type="double">1</factor>
+      <power type="int">1</power>
+    </binding>
+    <dead-band type="double">0.01031525619</dead-band>
+  </axis>
+
+  <axis n="1">
+    <name>Left Stick Up/Down</name>
+    <desc>Elevator</desc>
+    <direction>down/forward</direction>
+    <binding>
+      <command>property-scale</command>
+      <property>/controls/flight/elevator</property>
+      <factor type="double">-1</factor>
+      <power type="int">1</power>
+    </binding>
+    <dead-band type="double">0.01031525806</dead-band>
+  </axis>
+
+  <axis n="2">
+    <name>Rudder Left/Right</name>
+    <desc>Turn Left/Right</desc>
+    <direction>left/right</direction>
+     <binding>
+        <command>property-scale</command>
+        <property>/controls/flight/rudder</property>
+        <factor type="double">1</factor>
+        <power type="int">1</power>
+     </binding>
+    <dead-band type="double">0.01031525806</dead-band>
+  </axis>
+
+  <button n="9">
+   <name>R2</name>
+   <desc>Rudder Right</desc>
+   <repeatable type="bool">true</repeatable>
+   <binding>
+      <command>property-adjust</command>
+      <property>/controls/flight/rudder</property>
+         <step type="double">-0.05</step>
+   </binding>
+ </button>
+
+  <button n="8">
+   <name>L2</name>
+   <desc>Rudder Left</desc>
+   <repeatable type="bool">true</repeatable>
+   <binding>
+      <command>property-adjust</command>
+      <property>/controls/flight/rudder</property>
+         <step type="double">-0.05</step>
+   </binding>
+ </button>
+
+  <button n="0">
+    <name>Select</name>
+    <desc>View Cycle</desc>
+    <repeatable>false</repeatable>
+    <binding>
+      <command>nasal</command>
+      <script>view.stepView(1)</script>
+    </binding>
+  </button>
+
+  <button n="14">
+    <name>X</name>
+    <desc>Brakes</desc>
+    <binding>
+      <command>nasal</command>
+      <script>controls.applyBrakes(1)</script>
+    </binding>
+    <mod-up>
+      <binding>
+        <command>nasal</command>
+        <script>controls.applyBrakes(0)</script>
+      </binding>
+    </mod-up>
+  </button>
+
+  <button n="15">
+    <name>Square</name>
+    <desc>Left Brake</desc>
+    <binding>
+      <command>nasal</command>
+      <script>controls.applyBrakes(1, -1)</script>
+    </binding>
+    <mod-up>
+      <binding>
+        <command>nasal</command>
+        <script>controls.applyBrakes(0, -1)</script>
+      </binding>
+    </mod-up>
+  </button>
+
+  <button n="13">
+    <name>Circle</name>
+    <desc>Right Brake</desc>
+    <binding>
+      <command>nasal</command>
+      <script>controls.applyBrakes(1, 1)</script>
+    </binding>
+    <mod-up>
+      <binding>
+        <command>nasal</command>
+        <script>controls.applyBrakes(0, 1)</script>
+      </binding>
+    </mod-up>
+  </button>
+
+  <button n="11">
+    <name>L1</name>
+    <desc>Flaps Down</desc>
+    <repeatable>false</repeatable>
+    <binding>
+      <command>nasal</command>
+      <script>controls.flapsDown(-1)</script>
+    </binding>
+    <mod-up>
+      <binding>
+        <command>nasal</command>
+        <script>controls.flapsDown(0)</script>
+      </binding>
+    </mod-up>
+  </button>
+
+  <button n="10">
+    <name>R1</name>
+    <desc>Flaps Up</desc>
+    <repeatable>false</repeatable>
+    <binding>
+      <command>nasal</command>
+      <script>controls.flapsDown(1)</script>
+    </binding>
+    <mod-up>
+      <binding>
+        <command>nasal</command>
+        <script>controls.flapsDown(0)</script>
+      </binding>
+    </mod-up>
+  </button>
+
+  <button n="4">
+    <name>Up</name>
+    <desc>Elevator Trim Forward</desc>
+    <repeatable>true</repeatable>
+    <binding>
+      <command>nasal</command>
+      <script>controls.elevatorTrim(0.75)</script>
+    </binding>
+  </button>
+
+  <button n="6">
+    <name>Down</name>
+    <desc>Elevator Trim Backward</desc>
+    <repeatable>true</repeatable>
+    <binding>
+      <command>nasal</command>
+      <script>controls.elevatorTrim(-0.75)</script>
+    </binding>
+  </button>
+
+  <button n="12">
+    <name>Triangle</name>
+    <desc>Landing Gear Toggle</desc>
+    <repeatable>false</repeatable>
+    <binding>
+      <command>nasal</command>
+      <script>controls.gearToggle()</script>
+    </binding>
+  </button>
+
+  <button n="1">
+    <name>L3</name>
+    <desc>Parking Break Toggle</desc>
+    <binding>
+       <command>property-toggle</command>
+       <property>/controls/gear/brake-parking</property>
+   </binding>
+  </button>
+
+  <button n="2">
+    <name>R3</name>
+    <desc>Thrust Reverse Toggle</desc>
+    <binding>
+      <command>property-toggle</command>
+      <property>controls/engines/engine[0]/reverser</property>
+   </binding>
+   <binding>
+      <command>property-toggle</command>
+      <property>controls/engines/engine[1]/reverser</property>
+    </binding>
+  </button>
+
+  <button n="3">
+    <name>Start</name>
+    <desc>Toggle the pause state of the sim</desc>
+    <binding>
+      <command>property-toggle</command>
+       <property>/sim/freeze/master</property>
+    </binding>
+    <binding>
+      <command>property-toggle</command>
+       <property>/sim/freeze/clock</property>
+    </binding>
+    <binding>
+      <condition>
+           <property>/sim/freeze/replay-state</property>
+      </condition>
+       <command>property-assign</command>
+      <property>/sim/freeze/replay-state</property>
+      <value type="int">0</value>
+    </binding>
+  </button>
+
+  <button n="5">
+    <name>Right</name>
+    <desc>Increase Magneto on Selected Engine</desc>
+    <binding>
+      <command>nasal</command>
+       <script>controls.stepMagnetos(1)</script>
+    </binding>
+    <mod-up>
+    <binding>
+       <command>nasal</command>
+       <script>controls.stepMagnetos(0)</script>
+    </binding>
+    </mod-up>
+   </button>
+
+  <button n="7">
+    <name>Left</name>
+    <desc>Decrease Magneto on Selected Engine</desc>
+    <binding>
+      <command>nasal</command>
+       <script>controls.stepMagnetos(-1)</script>
+    </binding>
+    <mod-up>
+    <binding>
+       <command>nasal</command>
+       <script>controls.stepMagnetos(0)</script>
+    </binding>
+    </mod-up>
+   </button>
+
+  <button n="16">
+    <name>PS Button</name>
+    <desc>Show/Hide Menubar</desc>
+    <binding>
+      <command>property-toggle</command>
+      <property>/sim/menubar/visibility</property>
+    </binding>
+   </button>
+
+  <name type="string">PLAYSTATION(R)3 Controller</name>
+</PropertyList>
