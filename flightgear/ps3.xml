@@ -43,8 +43,8 @@
   </axis>
 
   <axis n="2">
-    <name>Rudder Left/Right</name>
-    <desc>Turn Left/Right</desc>
+    <name>Right Stick Left/Right</name>
+    <desc>Rudder</desc>
     <direction>left/right</direction>
      <binding>
         <command>property-scale</command>
@@ -57,23 +57,35 @@
 
   <button n="9">
    <name>R2</name>
-   <desc>Rudder Right</desc>
+   <desc>Engine Throttle Up</desc>
    <repeatable type="bool">true</repeatable>
    <binding>
-      <command>property-adjust</command>
-      <property>/controls/flight/rudder</property>
-         <step type="double">-0.05</step>
+     <command>nasal</command>
+     <script>
+       <![CDATA[
+       props.setAll(
+       '/controls/engines/engine','throttle', 
+       getprop('/controls/engines/engine/throttle') - 0.05
+       );
+       ]]>
+     </script>
    </binding>
  </button>
 
   <button n="8">
    <name>L2</name>
-   <desc>Rudder Left</desc>
+   <desc>Engine Throttle Down</desc>
    <repeatable type="bool">true</repeatable>
    <binding>
-      <command>property-adjust</command>
-      <property>/controls/flight/rudder</property>
-         <step type="double">-0.05</step>
+     <command>nasal</command>
+     <script>
+       <![CDATA[
+       props.setAll(
+       '/controls/engines/engine','throttle', 
+       getprop('/controls/engines/engine/throttle') + 0.05
+       );
+       ]]>
+     </script>
    </binding>
  </button>
 
