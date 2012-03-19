@@ -18,7 +18,7 @@
   <axis>
     <name>Left Stick Left/Right</name>
     <desc>Aileron</desc>
-    <direction>right</direction>
+    <direction>left/right</direction>
     <binding>
       <command>property-scale</command>
       <property>/controls/flight/aileron</property>
@@ -36,10 +36,11 @@
     <binding>
       <command>property-scale</command>
       <property>/controls/flight/elevator</property>
+      <offset type="double">0</offset>
       <factor type="double">-1</factor>
       <power type="int">1</power>
     </binding>
-    <dead-band type="double">0.01031525806</dead-band>
+    <dead-band type="double">0.01031525619</dead-band>
   </axis>
 
   <axis n="2">
@@ -52,7 +53,7 @@
         <factor type="double">1</factor>
         <power type="int">1</power>
      </binding>
-    <dead-band type="double">0.01031525806</dead-band>
+    <dead-band type="double">0.01031525619</dead-band>
   </axis>
 
   <button n="9">
@@ -65,7 +66,7 @@
        <![CDATA[
        props.setAll(
        '/controls/engines/engine','throttle', 
-       getprop('/controls/engines/engine/throttle') - 0.05
+       getprop('/controls/engines/engine/throttle') - 0.01
        );
        ]]>
      </script>
@@ -82,7 +83,7 @@
        <![CDATA[
        props.setAll(
        '/controls/engines/engine','throttle', 
-       getprop('/controls/engines/engine/throttle') + 0.05
+       getprop('/controls/engines/engine/throttle') + 0.01
        );
        ]]>
      </script>
@@ -208,11 +209,14 @@
 
   <button n="1">
     <name>L3</name>
-    <desc>Parking Break Toggle</desc>
-    <binding>
-       <command>property-toggle</command>
-       <property>/controls/gear/brake-parking</property>
-   </binding>
+    <desc>Look down</desc>
+    <binding> 
+      <command>nasal</command> 
+      <script> 
+        setprop("/sim/current-view/pitch-offset-deg", -12); 
+        setprop("/sim/current-view/heading-offset-deg", 0);
+      </script> 
+    </binding> 
   </button>
 
   <button n="2">
