@@ -1,0 +1,6 @@
+RUBY		= /usr/bin/ruby
+RUBY_SRC	= if_ruby.c
+RUBY_OBJ	= objects/if_ruby.o
+RUBY_PRO	= if_ruby.pro
+RUBY_CFLAGS	= -I/usr/lib/ruby/1.8/universal-darwin12.0 -DRUBY_VERSION=18
+RUBY_LIBS	= -framework Ruby -lpthread -ldl -lobjc -L/usr/lib/ruby/1.8
