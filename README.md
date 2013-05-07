@@ -1,5 +1,3 @@
-OI MARCO
-
 ### Random things, scripts, configurations, tweaks and etc.
 
 If you find something that you can use great, but use at your
