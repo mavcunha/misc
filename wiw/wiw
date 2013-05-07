@@ -16,4 +16,3 @@ do
 done
 
 terminal-notifier -title "WIW" -message "${CMD}" 
-
