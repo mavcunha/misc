@@ -1,3 +1,3 @@
 ### Random things, scripts, configurations, tweaks and etc.
 
-Nothing more than a scratch pad for random things.
+Nothing more than a scratch pad for random things, definitely not safe stuff.
