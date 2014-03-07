@@ -2,5 +2,6 @@
 
 # Random things to run for CI testing
 
-# let's fail
-exit 1
+echo "I'm running"
+
+exit 0
