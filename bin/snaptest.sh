@@ -4,6 +4,6 @@
 
 echo "I'm running"
 
-#sleep 10
+sleep 10
 
-exit 0
+exit 1
