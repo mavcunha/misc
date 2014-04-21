@@ -5,4 +5,4 @@
 echo "I'm running"
 
 
-exit 1
+exit 0
