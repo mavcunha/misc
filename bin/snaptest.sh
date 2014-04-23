@@ -2,7 +2,6 @@
 
 # Random things to run for CI testing
 
-echo "I'm running"
-
+echo "XXX: I'm running"
 
 exit 0
