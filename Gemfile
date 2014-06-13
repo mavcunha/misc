@@ -1,3 +1,3 @@
 source "https://rubygems.org"
 
-gem "nokogiri", "1.6.1"
+gem "phantomjs", "1.9.7.0"
