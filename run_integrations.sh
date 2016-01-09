@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+FAILED=0 # no failures at start
+
 function _color()   { tput setaf ${1}; echo -en ${2}; tput sgr0; }
 function in_red()     { _color 1 "${1}"; } # use for failures
 function in_green()   { _color 2 "${1}"; } # use for successes
@@ -14,17 +16,21 @@ function _test() {
   return $(($(date +%s) % 11))
 }
 
+function _fail() {
+  in_red "FAIL\n"
+  ((FAILED++))
+  return 0
+}
+
+function _pass() {
+  in_green "OK\n"
+}
+
 in_cyan "INTEGRATION TESTS\n"
-echo
 
-in_yellow "IMPORTANT TESTS\n"
-for i in $(seq 1 4); do
-  _test $(printf "%02d" "${i}") && in_red "FAIL\n" || in_green "OK\n" # purposely flipped.
+for i in $(seq 1 7); do
+  _test $(printf "%02d" "${i}") && _fail || _pass # purposely flipped.
 done
 echo
 
-in_yellow "NON IMPORTANT TESTS\n"
-for i in $(seq 4 7); do
-  _test $(printf "%02d" "${i}") && in_red "FAIL\n" || in_green "OK\n" # purposely flipped.
-done
-echo
+exit ${FAILED}
