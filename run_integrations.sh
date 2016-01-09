@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-function _color()   { tput -Txterm setaf ${1}; echo -en ${2}; tput -Txterm sgr0; }
+function _color()   { tput setaf ${1}; echo -en ${2}; tput sgr0; }
 function in_red()     { _color 1 "${1}"; } # use for failures
 function in_green()   { _color 2 "${1}"; } # use for successes
 function in_yellow()  { _color 3 "${1}"; } # use for warnings / attention
