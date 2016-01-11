@@ -26,11 +26,18 @@ function _pass() {
   in_green "OK\n"
 }
 
-in_cyan "INTEGRATION TESTS\n"
+function _t() {
+  _test $(printf "%02d" "${1}") && _fail || _pass # purposely flipped.
+}
 
-for i in $(seq 1 7); do
-  _test $(printf "%02d" "${i}") && _fail || _pass # purposely flipped.
-done
-echo
+function _run_all() {
+  for i in $(seq 1 7); do
+    _t ${i}
+  done
+  echo
+}
+
+in_cyan "INTEGRATION TESTS\n"
+[[ -n ${1} ]] && _t ${1} || _run_all
 
 exit ${FAILED}
