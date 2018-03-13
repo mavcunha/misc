@@ -1,7 +1,15 @@
+resources:
+- name: mavcunha-misc
+  type: git
+  source:
+    uri: https://github.com/mavcunha/misc.git
+    branch: master
 jobs:
   - name: mavcunha-misc-job
     plan:
       - get: mavcunha-misc
+			- get: preflight/pre-flight-misc
+				trigger: true
       - task: build
         config:
           platform: linux
