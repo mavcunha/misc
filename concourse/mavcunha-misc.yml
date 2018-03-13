@@ -8,7 +8,6 @@ jobs:
   - name: mavcunha-misc-job
     plan:
       - get: mavcunha-misc
-        passed: [pre-flight-misc]
       - task: build
         config:
           platform: linux
