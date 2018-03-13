@@ -35,3 +35,19 @@ jobs:
           run:
             path: mavcunha-misc/concourse/build.sh
             args: ["test"]
+  - name: mavcunha-misc-package
+    plan:
+      - get: mavcunha-misc
+        trigger: true
+        passed: [mavcunha-misc-test]
+      - task: package
+        config:
+          platform: linux
+          image_resource:
+            type: docker-image
+            source: {repository: ubuntu}
+          inputs:
+            - name: mavcunha-misc
+          run:
+            path: mavcunha-misc/concourse/build.sh
+            args: ["package"]
