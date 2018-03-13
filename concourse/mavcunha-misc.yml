@@ -18,7 +18,7 @@ jobs:
             - name: mavcunha-misc
           run:
             path: mavcunha-misc/build.sh
-            args: "compile"
+            args: ["compile"]
   - name: mavcunha-misc-test
     plan:
       - get: mavcunha-misc
@@ -33,7 +33,7 @@ jobs:
             - name: mavcunha-misc
           run:
             path: mavcunha-misc/build.sh
-            args: "test"
+            args: ["test"]
   - name: mavcunha-misc-package
     plan:
       - get: mavcunha-misc
@@ -48,4 +48,4 @@ jobs:
             - name: mavcunha-misc
           run:
             path: mavcunha-misc/build.sh
-            args: "package"
+            args: ["package"]
