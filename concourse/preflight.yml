@@ -1,0 +1,21 @@
+resources:
+- name: mavcunha-misc
+  type: git
+  source:
+    uri: https://github.com/mavcunha/misc.git
+    branch: master
+jobs:
+- name: pre-flight-misc
+  plan:
+  - get: mavcunha-misc
+    trigger: true
+  - task: pre-flight
+    config:
+      platform: linux
+      image_resource:
+        type: docker-image
+        source: {repository: ubuntu}
+      inputs:
+      - name: mavcunha-misc
+      run:
+        path: mavcunha-misc/concourse/preflight.sh
