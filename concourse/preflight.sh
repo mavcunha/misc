@@ -13,3 +13,5 @@ ${FLY_BIN} -t lite login --team-name=main --username=concourse --password=change
 ${FLY_BIN} -t lite set-pipeline --non-interactive -p mavcunha-misc -c ${ROOT_DIR}/mavcunha-misc.yml
 
 ${FLY_BIN} -t lite trigger-job -j mavcunha-misc/mavcunha-misc-build
+
+echo "ATC_EXTERNAL_URL=${ATC_EXTERNAL_URL}"
