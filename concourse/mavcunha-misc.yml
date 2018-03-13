@@ -1,0 +1,15 @@
+jobs:
+  - name: mavcunha-misc-job
+    plan:
+      - get: mavcunha-misc
+      - task: build
+        config:
+          platform: linux
+          image_resource:
+            type: docker-image
+            source: {repository: ubuntu}
+          inputs:
+            - name: mavcunha-misc
+          run:
+            path: echo
+            args: ['Hello!']
