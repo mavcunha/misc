@@ -5,7 +5,7 @@ resources:
     uri: https://github.com/mavcunha/misc.git
     branch: master
 jobs:
-  - name: mavcunha-misc-job
+  - name: mavcunha-misc-build
     plan:
       - get: mavcunha-misc
       - task: build
@@ -17,5 +17,35 @@ jobs:
           inputs:
             - name: mavcunha-misc
           run:
-            path: echo
-            args: ['Hello!']
+            path: mavcunha-misc/build.sh
+            args: compile
+  - name: mavcunha-misc-test
+    plan:
+      - get: mavcunha-misc
+        passed: [mavcunha-misc-build]
+      - task: test
+        config:
+          platform: linux
+          image_resource:
+            type: docker-image
+            source: {repository: ubuntu}
+          inputs:
+            - name: mavcunha-misc
+          run:
+            path: mavcunha-misc/build.sh
+            args: test
+  - name: mavcunha-misc-package
+    plan:
+      - get: mavcunha-misc
+        passed: [mavcunha-misc-test]
+      - task: package
+        config:
+          platform: linux
+          image_resource:
+            type: docker-image
+            source: {repository: ubuntu}
+          inputs:
+            - name: mavcunha-misc
+          run:
+            path: mavcunha-misc/build.sh
+            args: package
