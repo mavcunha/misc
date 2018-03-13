@@ -8,8 +8,8 @@ jobs:
   - name: mavcunha-misc-job
     plan:
       - get: mavcunha-misc
-			- get: preflight/pre-flight-misc
-				trigger: true
+      - get: preflight/pre-flight-misc
+        trigger: true
       - task: build
         config:
           platform: linux
