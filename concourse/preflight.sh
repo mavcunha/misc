@@ -10,4 +10,4 @@ export CONCOURSE_EXTERNAL_URL
 
 ${FLY_BIN} -t lite login --team-name=main --username=concourse --password=changeme --concourse-url=${CONCOURSE_EXTERNAL_URL}
 
-${FLY_BIN} -t lite set-pipeline -p mavcunha-misc -c ${ROOT_DIR}/mavcunha-misc.yml
+${FLY_BIN} -t lite set-pipeline --non-interactive -p mavcunha-misc -c ${ROOT_DIR}/mavcunha-misc.yml
