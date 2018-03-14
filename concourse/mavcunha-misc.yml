@@ -6,6 +6,7 @@ resources:
     branch: master
 jobs:
   - name: mavcunha-misc-build
+    serial: true
     plan:
       - get: mavcunha-misc
       - task: build
