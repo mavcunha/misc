@@ -17,14 +17,12 @@ jobs:
             source: {repository: ubuntu}
           inputs:
             - name: mavcunha-misc
-          outputs:
-            - name: mavcunha-misc-repo
           run:
             path: mavcunha-misc/concourse/build.sh
             args: ["compile"]
   - name: mavcunha-misc-test
     plan:
-      - get: mavcunha-misc-repo
+      - get: mavcunha-misc
         trigger: true
         passed: [mavcunha-misc-build]
       - task: test
