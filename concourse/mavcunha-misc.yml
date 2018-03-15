@@ -22,7 +22,7 @@ jobs:
             args: ["compile"]
   - name: mavcunha-misc-test
     plan:
-      - get: mavcunha-misc-build
+      - get: mavcunha-misc
         trigger: true
         passed: [mavcunha-misc-build]
       - task: test
@@ -38,7 +38,7 @@ jobs:
             args: ["test"]
   - name: mavcunha-misc-package
     plan:
-      - get: mavcunha-misc-test
+      - get: mavcunha-misc
         trigger: true
         passed: [mavcunha-misc-test]
       - task: package
